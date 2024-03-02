@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz{% endblock %}
+
+{% block left_content %}
+    <h2>Instructions</h2>
+    <p>Click the button below to start the quiz.</p>
+    <form action="{{ url_for('start_quiz') }}" method="post">
+        <button type="submit">Start Quiz</button>
+    </form>
+{% endblock %}
+
+{% block middle_content %}
+    <!-- Middle content will be replaced with quiz questions -->
+{% endblock %}

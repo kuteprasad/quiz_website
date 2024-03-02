@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    /* Add animation to the background */
+    animation: animateBackground 20s linear infinite;
+    font-size: 16px; /* Set base font size */
+}
+
+@keyframes animateBackground {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 0%; }
+}
+
+.container {
+    width: 500px; /* Increase the width of the main box */
+    height: 400px; /* Set a fixed height for vertical centering */
+    margin: auto; /* Center horizontally */
+    margin-top: calc(50vh - 150px); /* Center vertically */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Add animation to the main box */
+    animation: fadeIn 0.5s ease-in;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+button {
+    width: calc(100% - 22px); /* Adjusted width to accommodate padding and border */
+    margin-bottom: 10px;
+    padding: 15px; /* Increased padding */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 1.5em; /* Increased font size relative to the base font size */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Added shadow */
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover,
+button:hover {
+    border-color: #007bff; /* Light blue border color on hover */
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition effect */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+p {
+    text-align: center;
+    font-size: 1.2em; /* Increased font size relative to the base font size */
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Media query for mobile phones */
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 90%; /* Adjust width for smaller screens */
+        max-width: none; /* Remove maximum width restriction */
+        margin-top: 50px; /* Adjust vertical margin for better positioning */
+    }
+}
