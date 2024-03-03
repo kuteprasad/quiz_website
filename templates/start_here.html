@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz{% endblock %}
+{% block style_content %}
+
+{% endblock %}
+{% block left_content %}
+
+    
+{% endblock %}
+
+{% block middle_content %}
+    <!-- Middle content will be replaced with quiz questions -->
+    <div class="container">
+        <!-- <form action="/admin-login" method="get">
+          <button type="submit">Admin Login</button>
+        </form>
+        <form action="/student-login" method="get">
+          <button type="submit">Student Login</button>
+        </form> -->
+
+        <form action="/login" method="GET">
+            <input type="hidden" name="user" value="admin">
+            <button type="submit">Admin Login</button>
+        </form>
+
+        <form action="/login" method="GET">
+            <input type="hidden" name="user" value="student">
+            <button type="submit">Student Login</button>
+        </form>
+
+      </div>
+{% endblock %}

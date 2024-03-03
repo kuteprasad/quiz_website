@@ -1,20 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Quiz{% endblock %}
+{% block style_content %}
+
+{% endblock %}
+{% block left_content %}
+
+<!-- <div class="container"></div> -->
+
+    
+{% endblock %}
+
+{% block middle_content %}
+    <!-- Middle content -->
     <div class="container" >
-        <h2>Login</h2>
+        <h2>Welcome to {{ user }}, login Portal ... </h2>
         <form action="/login" method="post">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
+            <input type="hidden" name="user" value="{{ user }}">
             <button type="submit">Login</button>
         </form>
-        <p>Don't have an account? <a href="/signup">Signup</a></p>
+
+        <form action="/signup" method="get">
+            <p>Don't have a Account? Please do ...</p>
+            <input type="hidden" name="user" value="{{ user }}">
+            <button type="submit">SignUp</button>
+        </form>
     </div>
-</body>
-</html>
+
+<!-- <p>this is main.html file </p> -->
+{% endblock %}
+
+

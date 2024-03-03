@@ -1,27 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+
+    <style>
+      #forward-backward-buttons {
+        position: fixed;
+        /* right:10px; */
+        top: 10px;
+        z-index: 1; /* Ensures the buttons are above other content */
+      }
+
+      #forward-backward-buttons button {
+        background-color: rgb(64, 78, 232);
+        color: white;
+        border: none;
+        border-radius: 20px; /* Adjust the border-radius to make the buttons curved */
+        padding: 10px 20px;
+        margin: 0 10px;
+        width: max-content;
+        /* position: absolute; */
+      }
+
+      .forward-backward-buttons button:hover {
+        background-color: rgb(5, 61, 139);
+        cursor: pointer;
+      }
+
+      #go-back {
+        position: fixed;
+        /* right:10px; */
+        left: 10px; /* Adjust as needed */
+      }
+
+      #go-forward {
+        position: fixed;
+        right: 10px; /* Adjust as needed */
+      }
+    </style>
+    {% block style_content %} {% endblock %}
+  </head>
+  <body>
     <header>
-        <!-- Header content goes here -->
+      <div id="forward-backward-buttons">
+        <button id="go-back" onclick="goBack()">Go Back </button>
+        <button id="go-forward" onclick="goForward()">
+          Go Forward 
+        </button>
+      </div>
     </header>
 
     <section id="main">
-        <div class="left-section">
-            {% block left_content %}{% endblock %}
-        </div>
-        <div class="middle-section">
-            {% block middle_content %}{% endblock %}
-        </div>
+      <div class="left-section">{% block left_content %}{% endblock %}</div>
+      <div class="middle-section">{% block middle_content %}{% endblock %}</div>
     </section>
 
-    <footer>
-        
-    </footer>
-</body>
+    <footer></footer>
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+      function goForward() {
+        window.history.forward();
+      }
+    </script>
+  </body>
 </html>

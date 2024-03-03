@@ -1,25 +1,37 @@
+html, body {
+    height: 100%; /* Ensure the HTML and body elements take up the full height of the viewport */
+    margin: 0; /* Remove default margins */
+    padding: 0; /* Remove default padding */
+  }
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    /* background-color: #f4f4f4; */
+    background-image: url(./images/bg_pic_main.jpg);
+    background-size:cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent background image from repeating */
+   
     /* Add animation to the background */
-    animation: animateBackground 20s linear infinite;
+    /* animation: animateBackground 20s linear infinite; */
     font-size: 16px; /* Set base font size */
 }
-
+/* 
 @keyframes animateBackground {
     0% { background-position: 0% 0%; }
     100% { background-position: 100% 0%; }
-}
+} */
 
 .container {
     width: 500px; /* Increase the width of the main box */
-    height: 400px; /* Set a fixed height for vertical centering */
+    height: max-content; /* Set a  height for vertical centering */
     margin: auto; /* Center horizontally */
-    margin-top: calc(50vh - 150px); /* Center vertically */
+    margin-top: calc(40vh - 150px); /* Center vertically */
     padding: 20px;
-    background-color: #fff;
+    /* background-color: rebeccapurple; */
+    background-color: cornsilk;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(104, 237, 246, 0.1);
     /* Add animation to the main box */
     animation: fadeIn 0.5s ease-in;
 }
@@ -27,6 +39,7 @@ body {
 input[type="text"],
 input[type="email"],
 input[type="password"],
+input[type="number"],
 button {
     width: calc(100% - 22px); /* Adjusted width to accommodate padding and border */
     margin-bottom: 10px;
@@ -36,6 +49,9 @@ button {
     font-size: 1.5em; /* Increased font size relative to the base font size */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Added shadow */
 }
+input[type="radio"] {
+    display: none; /* Hide the default radio button */
+}
 
 input[type="text"]:hover,
 input[type="email"]:hover,
@@ -44,11 +60,44 @@ button:hover {
     border-color: #007bff; /* Light blue border color on hover */
 }
 
+label {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding-left: 30px; /* Add padding to align text properly */
+    position: relative;
+}
+
+label:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%; /* Make the radio button round */
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+input[type="radio"]:checked + label:before {
+    background-color: #007bff; /* Change the background color when checked */
+    border-color: #007bff; /* Change the border color when checked */
+}
+
 button {
     background-color: #007bff;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s; /* Smooth transition effect */
+
+    /* background-color: #007bff; */
+    /* color: #fff; */
+    /* border: none; */
+    border-radius: 5px;
+    padding: 10px 20px;
+    /* cursor: pointer; */
 }
 
 button:hover {
@@ -76,4 +125,16 @@ a:hover {
         max-width: none; /* Remove maximum width restriction */
         margin-top: 50px; /* Adjust vertical margin for better positioning */
     }
+}
+
+#q_font {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+.ans_font {
+    font-size: 20px;
+    /* font-stretch:extra-expanded; */
+    font-weight: lighter;
+    font-family: 'Times New Roman', Times, serif;
 }
