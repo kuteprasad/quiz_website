@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-import psycopg2
+import psycopg2, time
 
 app = Flask(__name__)
 app.secret_key = '1234'
@@ -46,102 +46,106 @@ def authenticate_user(username, password):
     else:
         return None  # User not found
 
-#functions of quiz
-def get_question(question_number):
-    # Sample questions with options and correct answers
-    questions = [
-        {
-            "question": "What is the capital of France?",
-            "options": ["London", "Paris", "Berlin", "Rome"],
-            "correct_answer": "Paris"
-        },
-        {
-            "question": "Which planet is known as the Red Planet?",
-            "options": ["Mars", "Jupiter", "Saturn", "Venus"],
-            "correct_answer": "Mars"
-        },
-        {
-            "question": "Who wrote 'Romeo and Juliet'?",
-            "options": ["William Shakespeare", "Charles Dickens", "Jane Austen", "Leo Tolstoy"],
-            "correct_answer": "William Shakespeare"
-        },
-        {
-            "question": "Which is the largest ocean on Earth?",
-            "options": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
-            "correct_answer": "Pacific Ocean"
-        },
-        {
-            "question": "What is the chemical symbol for water?",
-            "options": ["H2O", "CO2", "O2", "H2SO4"],
-            "correct_answer": "H2O"
-        },
-        {
-            "question": "Who painted the Mona Lisa?",
-            "options": ["Pablo Picasso", "Leonardo da Vinci", "Vincent van Gogh", "Michelangelo"],
-            "correct_answer": "Leonardo da Vinci"
-        },
-        {
-            "question": "What is the largest mammal in the world?",
-            "options": ["Elephant", "Whale", "Giraffe", "Hippopotamus"],
-            "correct_answer": "Whale"
-        },
-        {
-            "question": "Which gas do plants use to photosynthesize?",
-            "options": ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"],
-            "correct_answer": "Carbon dioxide"
-        },
-        {
-            "question": "Who discovered penicillin?",
-            "options": ["Isaac Newton", "Alexander Fleming", "Marie Curie", "Louis Pasteur"],
-            "correct_answer": "Alexander Fleming"
-        },
-        {
-            "question": "Which country is known as the Land of the Rising Sun?",
-            "options": ["China", "India", "Japan", "South Korea"],
-            "correct_answer": "Japan"
-        }
-    ]
-    return questions[question_number - 1]  # Adjust index to match question number
+def getTestData(test_number):
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM test_data WHERE test_id = %s", (test_number,))
+    rows = cursor.fetchall()
+    conn.close()
+    return rows
 
-def check_answer(question_number, answer):
-    # Placeholder function to check user's answer
-    # You need to implement your logic to validate the user's answer here
-    return True  # Return True for now as a placeholder
-# Routes
 @app.route('/')
 def index():
     return render_template('login.html')
 
-#quiz logic
-@app.route('/start_quiz', methods=['POST'])
+#######################################################################
+current_data = []
+total_correct_answers = {}
+
+# def countdown(seconds):
+#     while seconds > 0:
+#         print(seconds)
+#         time.sleep(1)  # Pause for 1 second
+#         seconds -= 1
+#     print("Time's up!")
+#     return seconds
+
+# Quiz logic
+@app.route('/start-quiz', methods=['POST'])
 def start_quiz():
-    # Logic to start the quiz
-    return redirect(url_for('question', question_number=1))
+    global current_data  # Access the global current_data variable
+    # Get form data: test name
+    test_number = int(request.form['test'])
 
-@app.route('/question/<int:question_number>', methods=['GET', 'POST'])
-def answer_question(question_number):
-    if request.method == 'GET':
-        # Logic to retrieve and display question
-        question = get_question(question_number)
-        return render_template('question.html', question=question)
-    elif request.method == 'POST':
-        # Logic to check answer and redirect to next question
-        answer = request.form['answer']
-        if check_answer(question_number, answer):
-            # Increment correct answer count
-            session['correct_answers'] += 1
-        if question_number == 10:
-            return redirect(url_for('result'))
+    current_data = getTestData(test_number)
+
+    index = 0
+    timer_value = 600
+    # print("Question: " + row_data[0][2])
+    # print(current_data)
+    # Redirect to the quiz route and pass the row_data as a keyword argument
+    # return redirect(url_for('quiz'))
+    # return "success"
+    return render_template('quiz.html', row_data=current_data, index=index, timer_value = timer_value)
+
+@app.route('/submit/<int:index>', methods=['POST'])
+def submit(index):
+    global total_correct_answers
+    global current_data  # Access the global current_data variable
+
+    # question_number = index + 1
+    correct_answer = request.form.get('correct_answer')
+    user_chosen_answer = request.form.get('answer')
+    current_countdown_seconds = int(request.form.get('timer_value_updated'))
+    # print(current_countdown_seconds)
+    # timer_value = int(request.form.get('timer_value'))
+
+    total_correct_answers[index] = (user_chosen_answer, correct_answer)
+
+    # if(user_chosen_answer):
+    #     if(user_chosen_answer == correct_answer):
+    #         total_correct_answers+=4
+    #     else:
+    #         total_correct_answers-=1
+    # else:
+    #     pass
+
+    if request.method == 'POST':
+        if 'next' in request.form:
+            # Next button was clicked
+            # Perform the desired action
+            index += 1
+
+            # Render the quiz.html template with the next question and options
+            # return render_template('quiz.html', row_data = current_data, index=index)
+            # return "next is clicked"
+        elif 'prev' in request.form:
+            # Previous button was clicked
+            # Perform the desired action
+            index -= 1
+
+            # Render the quiz.html template with the previous question and options
+            # return render_template('quiz.html', row_data = current_data, index=index)
+            # return "prev is clicked"
+        elif 'submit' in request.form:
+            # Submit button was clicked
+            # Perform the desired action
+            total_correct = 0
+            for answer, correct in total_correct_answers.values():
+                if answer == correct:
+                    total_correct += 4
+                else:
+                    total_correct -= 1
+
+            return render_template('result.html', total_correct = total_correct)
         else:
-            return redirect(url_for('question', question_number=question_number + 1))
+            # Handle other cases if needed
+            return "Some error occured"
+    return render_template('quiz.html', row_data = current_data, index=index, timer_value = current_countdown_seconds)
+    # Logic to handle submission of answers and calculate total correct answers
+    # return "the mcq's are submitted"
 
-@app.route('/result')
-def result():
-    correct_answers = session.get('correct_answers', 0)
-    total_questions = 10
-    return render_template('result.html', correct_answers=correct_answers, total_questions=total_questions)
-
-
+#######################################################################
 @app.route('/login', methods=['GET'])
 def login_get():
     return redirect(url_for('index'))
@@ -157,7 +161,7 @@ def login():
     if auth_result is True:
         # If username and password are correct, set session variable and redirect to quiz page
         session['username'] = username
-        return redirect(url_for('quiz'))
+        return redirect(url_for('home'))
     elif auth_result is False:
         # If username is found but password is incorrect, show error message
         return "Password incorrect. Please try again."
@@ -165,13 +169,13 @@ def login():
         # If username is not found, show error message
         return "User not found. Please register first."
 
-@app.route('/quiz')
-def quiz():
+@app.route('/home')
+def home():
     # Check if user is logged in
     if 'username' in session:
         # Pass the 'username' variable to the template
         username = session['username']
-        return render_template('quiz.html', username=username)
+        return render_template('home.html', username=username)
     else:
         return redirect(url_for('index'))
     
@@ -223,4 +227,5 @@ def print_users():
     return "Check console for all users"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=3000, debug=True)
+    app.run( debug=True)
+    # app.run(host='0.0.0.0', port=3000, debug=True)

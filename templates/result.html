@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %}Result{% endblock %}
+{% block title %}Quiz{% endblock %}
+
+{% block left_content %}
+    <div class="container" >
+
+        <p> <em> Congratulations, </em> </p>
+        <h1>total score = {{ total_correct }} </h1>
+
+    </div>
+    
+{% endblock %}
 
 {% block middle_content %}
-    <h2>Quiz Result</h2>
-    <p>Correct Answers: {{ correct_answers }}</p>
-    <p>Incorrect Answers: {{ total_questions - correct_answers }}</p>
+    <!-- Middle content will be replaced with quiz questions -->
 {% endblock %}
