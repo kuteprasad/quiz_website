@@ -13,7 +13,7 @@
 -- 	subject VARCHAR	(50) NOT NULL, 
 -- 	test_no int not null,
 -- 	test_id int PRIMARY KEY not null, 
-—     total_questions int not null,
+--  total_questions int not null,
 -- );
 
 -- insert into test_number ( subject, test_no, test_id) 
