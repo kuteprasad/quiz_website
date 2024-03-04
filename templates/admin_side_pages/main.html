@@ -13,7 +13,20 @@
 
 {% block middle_content %}
     <!-- Middle content -->
+    <div class="container">
+        <form action="/view_profile/{{ username }}">
+            <button type="submit">View Profile</button>
+        </form>
+        
+        <form action="/add_subject">
+            <button type="submit">Add Subject</button>
+        </form>
+        
+        <form action="/view_data_admin">
+            <button type="submit">View Data as Admin</button>
+        </form>
+    </div>
+    
 
-
-<p>this is main.html file </p>
+<!-- <p>this is main.html file </p> -->
 {% endblock %}

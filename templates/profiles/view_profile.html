@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz{% endblock %}
+{% block style_content %}
+
+{% endblock %}
+{% block left_content %}
+
+<!-- <div class="container"></div> -->
+
+    
+{% endblock %}
+
+{% block middle_content %}
+    <!-- Middle content -->
+    <div class="container">
+        <div class="profile-details">
+            <h2>Profile Details</h2>
+            <p>Username: {{ data[0] }}</p>
+            <p>Email: {{ data[1] }}</p>
+            <p>Password: {{ data[2] }}</p>
+            <!-- Assuming image path is in the fourth index -->
+            
+            <!-- <img src="{{ url_for('static', filename=data[3]) }}" alt="Profile Image"> -->
+        </div>
+        
+        <form action="/edit_profile">
+            <button type="submit" class="edit-button">Edit Profile</button>
+        </form>
+    </div>
+    
+
+
+{% endblock %}
