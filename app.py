@@ -1,13 +1,15 @@
-from flask import Flask, render_template, request, redirect, url_for, session
-import psycopg2, time
-
+from flask import Flask, redirect, url_for, request
+from backend.login import login_bp
+from backend.admin import admin_bp
+from backend.quiz import quiz_bp
+import time
 app = Flask(__name__)
 app.secret_key = '1234'
 
 # PostgreSQL connection details
 DB_NAME = 'quiz'
 DB_USER = 'postgres'
-DB_PASSWORD = '@Londhep555'
+DB_PASSWORD = 'india@11'
 DB_HOST = 'localhost'
 
 # Function to establish database connection
@@ -15,12 +17,12 @@ def connect_to_db():
     conn = psycopg2.connect(
         dbname=DB_NAME,
         user=DB_USER,
-        password="@Londhep555",
+        password=DB_PASSWORD,
         host=DB_HOST
     )
     return conn
 
-# This is a function to fetch all rows from the users table
+# Function to fetch all rows from the users table
 def fetch_all_users():
     conn = connect_to_db()
     cursor = conn.cursor()
@@ -227,5 +229,4 @@ def print_users():
     return "Check console for all users"
 
 if __name__ == '__main__':
-    app.run( debug=True)
-    # app.run(host='0.0.0.0', port=3000, debug=True)
+    app.run(debug=True)
