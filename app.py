@@ -7,7 +7,7 @@ app.secret_key = '1234'
 # PostgreSQL connection details
 DB_NAME = 'quiz'
 DB_USER = 'postgres'
-DB_PASSWORD = 'india@11'
+DB_PASSWORD = '@Londhep555'
 DB_HOST = 'localhost'
 
 # Function to establish database connection
@@ -15,12 +15,12 @@ def connect_to_db():
     conn = psycopg2.connect(
         dbname=DB_NAME,
         user=DB_USER,
-        password=DB_PASSWORD,
+        password="@Londhep555",
         host=DB_HOST
     )
     return conn
 
-# Function to fetch all rows from the users table
+# This is a function to fetch all rows from the users table
 def fetch_all_users():
     conn = connect_to_db()
     cursor = conn.cursor()
