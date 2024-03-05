@@ -1,10 +1,12 @@
 from flask import Blueprint, jsonify, render_template, session, request
-from backend.database import getTestData
+from backend.database import getTestData,show_users_data
 
 quiz_bp = Blueprint('quiz', __name__)
 
 total_correct_answers = {}
 current_data = []
+username = ''
+test_id = 0
 
 @quiz_bp.route('/home/<username>')
 def index(username):
@@ -12,25 +14,32 @@ def index(username):
     if 'username' in session:
         # Pass the 'username' variable to the template
         username = session['username']
-        return render_template('home.html', username=username)
+        return render_template('test_section/home.html', username=username)
     else:
         return redirect(url_for('login.index'))
 
 @quiz_bp.route('/start-quiz', methods=['POST'])
 def start_quiz():
     global current_data  # Access the global current_data variable
-    test_number = int(request.form['test'])
-    current_data = getTestData(test_number)
-    print(current_data)
+    global test_id, username
+
+    username = request.form['username']
+    test_id = int(request.form['test'])
+
+    current_data = getTestData(test_id)
+    # print(current_data)
     index = 0
     timer_value = 600
-    return render_template('quiz.html', row_data=current_data, index=index, timer_value=timer_value)
+    return render_template('test_section/quiz.html', row_data=current_data, index=index, timer_value=timer_value, username = username)
 
 @quiz_bp.route('/submit/<int:index>', methods=['POST'])
 def submit(index):
     global total_correct_answers
     global current_data  # Access the global current_data variable
-
+    global test_id
+    username = request.form['username']
+    # print("user :" + username )
+    # print(test_id)
     # question_number = index + 1
     correct_answer = request.form.get('correct_answer')
     user_chosen_answer = request.form.get('answer')
@@ -38,6 +47,7 @@ def submit(index):
 
     total_correct_answers[index] = (user_chosen_answer, correct_answer)
     
+
 
     if request.method == 'POST':
         if 'next' in request.form:
@@ -66,10 +76,12 @@ def submit(index):
                 else:
                     total_correct -= 1
 
-            return render_template('result.html', total_correct = total_correct)
+            data = show_users_data('student', username, test_id)
+            # print(data)
+            return render_template('test_section/result.html', row_data = data, total_correct = total_correct, username = username)
         else:
             # Handle other cases if needed
             return "Some error occured"
-    return render_template('quiz.html', row_data = current_data, index=index, timer_value = current_countdown_seconds)
+    return render_template('test_section/quiz.html', row_data = current_data, index=index, timer_value = current_countdown_seconds , username = username)
     # Logic to handle submission of answers and calculate total correct answers
     # return "the mcq's are submitted"

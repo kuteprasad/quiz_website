@@ -4,28 +4,13 @@
 {% block style_content %}
 <style>
     /* Add your CSS styling here */
-    .table1 {
-    margin: 0 auto; /* Center horizontally */
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    position: absolute;
+    .table2 {
+        margin: 0 auto; /* Center horizontally */
+    position:absolute;
     top: 50%;
-    transform: translateY(-50%);
    }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        padding: 10px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
+   
 
     /* .container {
     margin: auto;
@@ -65,7 +50,7 @@ label {
 {% endblock %}
 {% block left_content %}
 
-<div class="container table1">
+<div class="container table1 table2">
     <h2>Test Data Available in Database</h2>
     <table>
         <thead>

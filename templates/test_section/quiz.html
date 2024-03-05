@@ -18,9 +18,10 @@
     <!-- Generate quiz -->
     <div class="container" style="height: 500px; width: 600px;">
         <form id="quiz-form" action="/submit/{{ index }}" method="POST">
+            <input type="hidden" name="username" value="{{username}}">
             {% if row_data %}
                 {% if index > 0 %}
-                <button type="submit" name="prev">Previous</button>
+                <button type="button" name="prev">Previous</button>
                 {% endif %}
                 
                 {% if index < row_data|length %}
@@ -41,6 +42,7 @@
                     
                     <input type="radio" id="option4" name="answer" value="{{ row_data[index][6] }}">
                     <label for="option4" class="ans_font">{{ row_data[index][6] }}</label><br> <!-- Display option 4 -->
+                   
                     
                     {% if index < row_data|length - 1 %}
                     <button type="submit" name="next">Next</button>

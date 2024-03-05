@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, session, request
-from backend.database import getTestNumberData, add_questions_to_database, add_subject_to_table, get_que_no_from_table_number,check_details_to_update_table
+# import psycopg2
+from backend.database import getTestNumberData, add_questions_to_database, add_subject_to_table, get_que_no_from_table_number,check_details_to_update_table, show_users_data
 
 admin_bp = Blueprint('admin', __name__)
 
@@ -8,9 +9,11 @@ def index(username):
     if 'username' in session:
         # print(getTestNumberData())
         # index = 0  # Set the initial value of index
-        return render_template('admin_side_pages/add_subject.html', data = getTestNumberData(), username = username)
+        return render_template('admin_side_pages/admin_main.html', username = username)
     else:
         return redirect(url_for('login.index'))
+
+    
 
 """
     box [ show table -> test_number ]
@@ -22,6 +25,20 @@ def index(username):
                     submit -> insert into test_number (dataset)
     ]
 """
+@admin_bp.route('/view_data_admin/<username>', methods=['GET'])
+def view_data_admin(username):
+    # username = request.args.get('username')
+    data = show_users_data('admin', username)
+    # print(data)
+    return render_template('admin_side_pages/view_data_admin.html', row_data = data, username = username)
+   
+
+@admin_bp.route('/add_subject', methods=['GET'])
+def add_subject():
+    username = request.args.get('username')
+    return render_template('admin_side_pages/add_subject.html', data = getTestNumberData(), username = username)
+   
+
 @admin_bp.route('/add_questions', methods=['GET'])
 def add_questions_get():
     test_id = request.args.get('test_id')

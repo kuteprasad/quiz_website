@@ -6,7 +6,7 @@
 {% endblock %}
 {% block left_content %}
 
-<div class="container"></div>
+<div class="container"> Welcome, {{username}} </div>
 
     
 {% endblock %}
@@ -15,6 +15,7 @@
     <!-- Middle content -->
     <div class="container">
         <form action="/view_profile/{{ username }}">
+            <input type="hidden" name="user_type" value="admin">
             <button type="submit">View Profile</button>
         </form>
         
@@ -22,7 +23,8 @@
             <button type="submit">Add Subject</button>
         </form>
         
-        <form action="/view_data_admin">
+        <form action="/view_data_admin/{{username}}">
+            <!-- <input type="hidden" name="username" value="{{username}}"> -->
             <button type="submit">View Data as Admin</button>
         </form>
     </div>

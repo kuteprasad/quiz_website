@@ -7,7 +7,7 @@
 {% block left_content %}
 
 <!-- <div class="container"></div> -->
-
+<div class="container"> hello, {{username}}</div>
     
 {% endblock %}
 
@@ -16,15 +16,24 @@
     <div class="container">
         <div class="profile-details">
             <h2>Profile Details</h2>
-            <p>Username: {{ data[0] }}</p>
-            <p>Email: {{ data[1] }}</p>
-            <p>Password: {{ data[2] }}</p>
-            <!-- Assuming image path is in the fourth index -->
-            
-            <!-- <img src="{{ url_for('static', filename=data[3]) }}" alt="Profile Image"> -->
+            <form>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" value="{{ data[1] }}" readonly><br><br>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{ data[3] }}" readonly><br><br>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" value="{{ '*' * data[2]|length }}" readonly><br><br>
+                
+                <!-- Assuming image path is in the fourth index -->
+                <!-- <img src="{{ url_for('static', filename=data[3]) }}" alt="Profile Image"> -->
+            </form>
         </div>
         
-        <form action="/edit_profile">
+        
+        <form action="/edit_profile/{{username}}" method="GET">
+            <input type="hidden" name="user_type" value="{{user_type}}">
             <button type="submit" class="edit-button">Edit Profile</button>
         </form>
     </div>

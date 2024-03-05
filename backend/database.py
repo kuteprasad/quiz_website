@@ -38,6 +38,62 @@ def authenticate_user(user, username, password):
     else:
         return None  # User not found
 
+
+# Get form data
+def signup_user(form_data):
+
+    user = form_data['user']
+    username = form_data['username']
+    email = form_data['email']
+    password = form_data['password']
+
+    table_name = return_table_name(user)
+
+        # Establish a connection to the database
+    try:
+        conn = connect_to_db()
+        cursor = conn.cursor()
+
+        # Execute SQL INSERT query to insert user data into the database
+        query = f"INSERT INTO {table_name} (username, email, password) VALUES (%s, %s, %s);"
+        cursor.execute(query, ( username, email, password ))
+        
+        # Commit the transaction
+        conn.commit()
+        
+        # Close the cursor and database connection
+        cursor.close()
+        conn.close()
+    
+    except Exception as e:
+        return e
+
+def view_profile_data(user_type, username):
+    table_name = return_table_name(user_type)
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    query = f"SELECT * FROM {table_name} WHERE username = %s"
+    cursor.execute(query, (username,))
+    row = cursor.fetchone()
+    conn.close()
+    # print(row[0])
+    return row
+
+def updata_profile_database(user_type, username, form_data):
+    table_name = return_table_name(user_type)
+
+    new_username = form_data['username']
+    new_email = form_data['email']
+    new_password = form_data['password']
+
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    query = f"UPDATE {table_name} SET username = %s, email = %s, password = %s WHERE username = %s"
+    cursor.execute(query, (new_username, new_email, new_password, username))
+    conn.commit()  # Commit the transaction after executing the update query
+    conn.close()
+
+
 def getTestData(test_number):
     conn = connect_to_db()
     cursor = conn.cursor()
@@ -126,8 +182,7 @@ def check_details_to_update_table(form_data):
         cursor = conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM test_number WHERE (subject, test_no, test_id) = %s ;", (data,))
         rows = cursor.fetchall()
-        conn.commit()  # Commit the transaction
-        conn.close()
+        
 
         if(rows[0][0] == 1):
             return True
@@ -137,3 +192,28 @@ def check_details_to_update_table(form_data):
         print("Error occurred while inserting data:", e)
         return False
 
+def show_users_data(user_type='admin', username='prasad', test_id=0):
+    try:
+        conn = connect_to_db()
+        cursor = conn.cursor()
+        if(user_type == 'admin'):
+            #return all data in users_data table 
+            query = f"SELECT * FROM users_data;"
+        else:
+            if(test_id == 0):
+                #return complete data of specific user:
+                query = f"SELECT * FROM users_data WHERE username = '{username}' ;"
+            else:
+                #return user data of specific test id from users_data table 
+                query = f"SELECT * FROM users_data WHERE username = '{username}' AND test_id = {test_id};"
+            
+        cursor.execute(query)
+        rows = cursor.fetchall()
+        conn.commit()  # Commit the transaction
+        conn.close()
+        return rows
+    except Exception as e:
+        print("Error occurred while inserting data:", e)
+        return False
+
+# print(show_users_data('student', 'prasad', 244))
