@@ -9,6 +9,8 @@ profile_bp = Blueprint('profile', __name__)
 def index(username):
     # return "success"
     # global user_type
+    print(session['username'])
+
     user_type = request.args.get('user_type')
     # print("usr ty 1 : " + user_type)
     data = view_profile_data(user_type, username)
@@ -28,7 +30,6 @@ def update_profile(username):
     # global user_type
     user_type = request.form['user_type']
     # print("usr ty 3 : " + user_type)
-
     # print("user type : " + user_type + " username  :" + username + "request.form : ")
     updata_profile_database(user_type, username, request.form)
     data = view_profile_data(user_type, username)
