@@ -1,11 +1,14 @@
 html,
 body {
-  height: 100%; /* Ensure the HTML and body elements take up the full height of the viewport */
+  height: 100vh; /* Ensure the body takes up the full height of the viewport */
   margin: 0; /* Remove default margins */
   padding: 0; /* Remove default padding */
 }
 
 body {
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* Define three rows: header, main content, and footer */
+
   font-family: Arial, sans-serif;
   /* background-color: #f4f4f4; */
   background-image: url(./images/bg_pic_main.jpg);
@@ -16,6 +19,34 @@ body {
   /* Add animation to the background */
   /* animation: animateBackground 20s linear infinite; */
   font-size: 16px; /* Set base font size */
+}
+
+header,
+footer {
+  background-color: lightgray; /* Just for illustration */
+  padding: 10px;
+}
+
+.header, .footer {
+  height: 100px;
+}
+
+#main {
+  display: grid;
+  grid-template-columns: 30% 70%; /* Set left-section and middle-section to 30% and 70% of the width respectively */
+}
+
+.left-section,
+.middle-section {
+  padding: 20px; /* Add some padding to the sections for spacing */
+}
+
+.left-section {
+  background-color: lightblue; /* Just for illustration */
+}
+
+.middle-section {
+  background-color: lightgreen; /* Just for illustration */
 }
 /* 
 @keyframes animateBackground {
@@ -105,6 +136,12 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: darkgrey;
+  color: white; /* Optionally, change text color */
+  cursor: not-allowed; /* Optionally, change cursor to indicate disabled state */
 }
 
 p {
