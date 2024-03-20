@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, render_template, session, request
-from backend.database import getTestData,show_users_data
+from backend.database import getTestData, show_users_data
 
 quiz_bp = Blueprint('quiz', __name__)
 
