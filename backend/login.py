@@ -1,11 +1,13 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
-from backend.database import authenticate_user, signup_user
+from backend.database import authenticate_user, signup_user, setup_initial_tables, insert_initial_data
 
 login_bp = Blueprint('login', __name__)
 
 @login_bp.route('/')
 def index():
     # return "success"
+    setup_initial_tables()
+    insert_initial_data()
     return render_template('start_here.html')
 
 @login_bp.route('/login', methods=['GET'])
