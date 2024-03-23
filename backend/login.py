@@ -14,7 +14,7 @@ def index():
 def login_get():
     user = request.args.get('user')
     if user in ['student', 'admin']:
-        return render_template('login_signup_section/login.html', user=user)
+        return render_template('login_signup_section/login.html', user = user)
     else:
         return redirect(url_for('login.index'))
 
@@ -29,7 +29,7 @@ def login_post():
         session['username'] = username
         if user == 'admin':
             return redirect(url_for('admin.index', username=username))
-        else:
+        elif user == 'student':
             return redirect(url_for('student.index', username=username))
     elif auth_result is False:
         return "Password incorrect. Please try again."

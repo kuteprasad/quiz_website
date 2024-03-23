@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, session, request
 # import psycopg2
-from backend.database import getTestNumberData, add_questions_to_database, add_subject_to_table, get_que_no_from_table_number,check_details_to_update_table, show_users_data
+from backend.database import get_test_details, add_questions_to_database, add_test_details, get_question_number_from_test_details, check_details_to_update_table, show_users_data
 
 admin_bp = Blueprint('admin', __name__)
 
@@ -36,7 +36,7 @@ def view_data_admin(username):
 @admin_bp.route('/add_subject', methods=['GET'])
 def add_subject():
     username = request.args.get('username')
-    return render_template('admin_side_pages/add_subject.html', data = getTestNumberData(), username = username)
+    return render_template('admin_side_pages/add_subject.html', data = get_test_details(), username = username)
    
 
 @admin_bp.route('/add_questions', methods=['GET'])
@@ -46,13 +46,13 @@ def add_questions_get():
     #function in Database to add new subject in the database.
     if(request.args.get('submit_type') == 'update'):
         if(check_details_to_update_table(request.args)):
-            q_n = get_que_no_from_table_number(test_id)
+            q_n = get_question_number_from_test_details(test_id)
             return render_template('admin_side_pages/add_questions.html', test_id = test_id, question_number = q_n, username = username )
 
         return "incorrect details to Update table, try again, or create new table"
     else:
-        if(add_subject_to_table(request.args)):
-            q_n = get_que_no_from_table_number(test_id)
+        if(add_test_details(request.args)):
+            q_n = get_question_number_from_test_details(test_id)
 
             return render_template('admin_side_pages/add_questions.html', test_id = test_id, question_number = q_n, username = username )
         else:
@@ -63,7 +63,7 @@ def add_questions_get():
 def add_questions():
     if(add_questions_to_database(request.form)):
         test_id = request.form['test_id']
-        q_n = get_que_no_from_table_number(test_id)
+        q_n = get_question_number_from_test_details(test_id)
         username = request.form['username']
         # print(request.form)
 

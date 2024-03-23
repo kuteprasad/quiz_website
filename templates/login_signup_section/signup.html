@@ -5,8 +5,7 @@
 
 {% endblock %}
 {% block left_content %}
-<!-- 
-<div class="container"></div> -->
+
     
 {% endblock %}
 
@@ -17,8 +16,12 @@
         <h2>Welcome to {{ user }}, Signup Portal ... </h2>
         <form action="/signup_submit" method="post">
             <input type="text" name="username" placeholder="Username" required>
+            <input type="text" name="first_name" placeholder="Username" required>
+            <input type="text" name="last_name" placeholder="Username" required>
             <input type="email" name="email" placeholder="Email" required>
+            <input type="email" name="phone_number" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
+            <!-- <input type="password" name="password" placeholder="Password" required> -->
             <input type="hidden" name="user" value="{{ user }}">
             <button type="submit">Signup</button>
         </form>
