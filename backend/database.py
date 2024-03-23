@@ -3,17 +3,16 @@ import hashlib  # For generating a random salt
 import subprocess
 import os
 
-DB_NAME = 'quiz'
-DB_USER = 'postgres'
-DB_PASSWORD = 'india@11'
-DB_HOST = 'localhost'
-
 def connect_to_db():
+    db_password = os.environ.get('DB_PASSWORD')
+    if not db_password:
+        raise ValueError("DB_PASSWORD environment variable not set")
+
     conn = psycopg2.connect(
-        dbname=DB_NAME,
-        user=DB_USER,
-        password=DB_PASSWORD,
-        host=DB_HOST
+        dbname=os.environ.get('DB_NAME'),
+        user=os.environ.get('DB_USER'),
+        password=db_password,
+        host=os.environ.get('DB_HOST')
     )
     return conn
 
