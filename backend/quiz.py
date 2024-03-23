@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, render_template, session, request
-from backend.database import getTestData, show_users_data
+from backend.database import get_test_data, show_users_data
 
 quiz_bp = Blueprint('quiz', __name__)
 
@@ -23,7 +23,7 @@ def start_quiz():
     username = request.form['username']
     test_id = int(request.form['test'])
 
-    current_data = getTestData(test_id)
+    current_data = get_test_data(test_id)
     # print(current_data)
     index = 0
     timer_value = 30
