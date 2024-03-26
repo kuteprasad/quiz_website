@@ -31,6 +31,7 @@ def fetch_all_users():
 
 # Function to check if username and password are correct
 def authenticate_user(username, password):
+    # return True
     conn = connect_to_db()
     cursor = conn.cursor()
     cursor.execute("SELECT password FROM accounts WHERE username = %s", (username,))
