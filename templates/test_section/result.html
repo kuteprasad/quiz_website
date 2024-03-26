@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz{% endblock %}
+{% block style_content %}
+<style>
+    .max-width{
+        width: max-content;
+    }
+    </style>
+{% endblock %}
+{% block left_content %}
+    <!-- <div class="container" >
+
+        <p > <em> Congratulations, </em> </p>
+        <h1>total score = {{ total_correct }} </h1>
+
+    </div> -->
+    
+{% endblock %}
+
+{% block middle_content %}
+
+    <!-- Middle content will be replaced with quiz questions -->
+
+    <div class="container" >
+
+        <p > <em> Congratulations, </em> </p>
+        <h1>total score = {{ total_correct }} </h1>
+
+        <div class="container table1 max-width">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Serial No.</th>
+                        <th>Username</th>
+                        <!-- <th>User ID</th> -->
+                        <!-- <th>Test ID</th> -->
+                        <th>Score</th>
+                        <!-- <th>Total Score</th> -->
+                        <th>Test Duration (seconds)</th>
+                        <th> On Date </th>
+                        <th> On Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in row_data %}
+                    <tr>
+                        <td>{{ loop.index  }}</td>
+                        <td>{{ username }}</td>
+                        <!-- <td>{{ row[1] }}</td> -->
+                        <!-- <td>{{ row[2] }}</td> -->
+                        <td>{{ row[3] }}</td>
+                        <td>{{ row[4] }}</td>
+                        <!-- <td>{{ row.time_required }}</td> -->
+                        <td>{{ row[5] }}</td>
+                        <td>{{ row[6] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        
+            </div>
+        </div>
+    </div>
+            
+{% endblock %}

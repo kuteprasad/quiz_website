@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz{% endblock %}
+{% block style_content %}
+<style>
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 18px; 
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+
+</style>
+{% endblock %}
+{% block left_content %}
+
+
+
+    
+{% endblock %}
+
+{% block middle_content %}
+    <!-- Middle content -->
+    <div class="container">
+        <form action="/add_questions" method="POST">
+            <div class="form-group">
+                <label for="question_no">Question Number:</label>
+                <input type="text" id="question_no" name="question_no" class="form-control"  value="{{ question_no}}" readonly>
+                <input type="hidden" name="test_id" value = "{{test_id}}" readonly> 
+            </div>
+
+            <div class="form-group">
+                <label for="question">Question:</label>
+                <textarea id="question" name="question" rows="3" class="form-control" required></textarea>
+            </div>
+    
+            <div class="form-group">
+                <label for="option1">Option 1:</label>
+                <input type="text" id="option1" name="option1" class="form-control" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="option2">Option 2:</label>
+                <input type="text" id="option2" name="option2" class="form-control" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="option3">Option 3:</label>
+                <input type="text" id="option3" name="option3" class="form-control" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="option4">Option 4:</label>
+                <input type="text" id="option4" name="option4" class="form-control" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="correct_answer">Correct Answer:</label>
+                <input type="text" id="correct_answer" name="correct_answer" class="form-control"  required>
+            </div>
+            <!-- <input type="hidden" name="username" value="{{username}}"> -->
+            <button type="submit" class="btn btn-primary" name="add_another">Add Another Question</button>
+        </form>
+
+        <form action="/admin" method="GET">
+            <!-- <input type="hidden" name="username" value="{{username}}"> -->
+            <button type="submit" class="btn btn-primary" name="done">Done, Go to Admin Main Page</button>
+        </form>
+    </div>
+    
+
+
+{% endblock %}

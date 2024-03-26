@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz{% endblock %}
+{% block style_content %}
+<style>
+
+.test-card-container {
+    display: flex;  /* Arrange cards horizontally */
+    flex-wrap: wrap;  /* Allow cards to wrap to next line if space is limited */
+    justify-content: space-between;  /* Distribute cards evenly with space between */
+    margin: 20px auto;  /* Add some margin for better spacing */
+}
+
+.test-info-card {  /* Add a class name for easier styling */
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;  /* Arrange content in a row */
+    flex-direction: column;  /* Stack content vertically */
+    align-items: center;  /* Center content horizontally */
+    text-align: center;  /* Center text within the card */
+    width: fit-content;  /* Adjust width as needed */
+}
+
+.test-info-card p {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.test-info-card button {
+    background-color: #4CAF50;  /* Green color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px; /* Add some space above the button */
+}
+
+.test-info-card button:hover {
+    background-color: #3e8e41;  /* Darker green on hover */
+}
+
+</style>
+{% endblock %}
+{% block left_content %}
+    <div class="container" style="height: 500px; width: 600px;">
+
+        <h2> Welcome, {{ username }} </h2>
+        
+        
+    </div>
+    
+{% endblock %}
+
+{% block middle_content %}
+<div class="container" style="height: auto; width: 600px;">
+    
+    <p>
+        The button give below will direct you to a test of 10 Questions.
+        10 is not my favourite number, still, I wish you to score 10 out of 10 marks. 
+        Click on submit button before 10 minutes, else Submit monster will do it.
+    </p>
+    <!-- <input type="hidden" name="username" value="{{username}}"> -->
+    <div class="test-card-container">  {% for row in data %}
+            <form action="/start-quiz" method="POST">
+            <div class="test-info-card">
+              <p>Test No .: {{row[2]}}</p>
+              <input type="hidden" name="test_duration" value="{{row[3]}}" readonly> 
+              <p>Test Duration .: {{row[3]}} Seconds</p>
+              <p>Total Marks .: {{row[4]}}</p>
+              <p>Total Questions .: {{row[5]}}</p>
+              <button type="submit" class="button" name="test_id" value="{{row[0]}}">{{row[1]}}</button>
+            </div>
+        </form>
+        
+          {% endfor %}
+        </div>
+        
+    
+</div>
+{% endblock %}
