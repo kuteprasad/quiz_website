@@ -52,9 +52,9 @@ label {
     <div class="container">
         <form action="/add_questions" method="POST">
             <div class="form-group">
-                <label for="question_number">Question Number:</label>
-                <input type="text" id="question_number" name="question_number" class="form-control"  value="{{ question_number}}" readonly>
-                <input type="hidden" name="test_id" value = "{{test_id}}">
+                <label for="question_no">Question Number:</label>
+                <input type="text" id="question_no" name="question_no" class="form-control"  value="{{ question_no}}" readonly>
+                <input type="hidden" name="test_id" value = "{{test_id}}" readonly> 
             </div>
 
             <div class="form-group">
@@ -86,12 +86,12 @@ label {
                 <label for="correct_answer">Correct Answer:</label>
                 <input type="text" id="correct_answer" name="correct_answer" class="form-control"  required>
             </div>
-            <input type="hidden" name="username" value="{{username}}">
+            <!-- <input type="hidden" name="username" value="{{username}}"> -->
             <button type="submit" class="btn btn-primary" name="add_another">Add Another Question</button>
         </form>
 
-        <form action="/admin/{{username}}" method="GET">
-            <input type="hidden" name="username" value="{{username}}">
+        <form action="/admin" method="GET">
+            <!-- <input type="hidden" name="username" value="{{username}}"> -->
             <button type="submit" class="btn btn-primary" name="done">Done, Go to Admin Main Page</button>
         </form>
     </div>

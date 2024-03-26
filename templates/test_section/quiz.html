@@ -48,63 +48,74 @@ style_content %}
 </style>
 {% endblock %} {% block left_content %}
 <!-- left block content -->
-<div class="timer" id="timer">No time to Show</div>
-
-<div class="left-mcq-panel">
-  <!-- <div class="space"></div> -->
-  <div class="button-group">
-    <button type="button" class="active attempted" name="select1" onclick="goToSelectedQuestion(1)">1</button>
-    <button type="button" name="select2" onclick="goToSelectedQuestion(2)">2</button>
-    <button type="button" name="select3" onclick="goToSelectedQuestion(3)">3</button>
+<div class="timer" id="timer" > Countdown Will start Soon ... </div>
+ <!-- Hidden input field to pass the updated timer value -->
+ 
+ <input type="hidden" id="index" value="{{ index }}" />
+ 
+ <div  id="row_data" hidden> {{ row_data|tojson|safe }} </div>
+ 
+ <div class="left-mcq-panel">
+   
+   <div class="button-group">
+     <button type="button" class="active attempted" name="select1" onclick="goToSelectedQuestion(1)">1</button>
+     <button type="button" name="select2" onclick="goToSelectedQuestion(2)">2</button>
+     <button type="button" name="select3" onclick="goToSelectedQuestion(3)">3</button>
+    </div>
+    <div class="button-group">
+      <button type="button" name="select4" onclick="goToSelectedQuestion(4)">4</button>
+      <button type="button" name="select5" onclick="goToSelectedQuestion(5)">5</button>
+      <button type="button" name="select6" onclick="goToSelectedQuestion(6)">6</button>
+    </div>
+    <div class="button-group">
+      <button type="button" name="select7" onclick="goToSelectedQuestion(7)">7</button>
+      <button type="button" name="select8" onclick="goToSelectedQuestion(8)">8</button>
+      <button type="button" name="select9" onclick="goToSelectedQuestion(9)">9</button>
+    </div>
+    <div class="button-group">
+      <button type="button" name="select10" onclick="goToSelectedQuestion(10)">10</button>
+    </div>
   </div>
-  <div class="button-group">
-    <button type="button" name="select4" onclick="goToSelectedQuestion(4)">4</button>
-    <button type="button" name="select5" onclick="goToSelectedQuestion(5)">5</button>
-    <button type="button" name="select6" onclick="goToSelectedQuestion(6)">6</button>
-  </div>
-  <div class="button-group">
-    <button type="button" name="select7" onclick="goToSelectedQuestion(7)">7</button>
-    <button type="button" name="select8" onclick="goToSelectedQuestion(8)">8</button>
-    <button type="button" name="select9" onclick="goToSelectedQuestion(9)">9</button>
-  </div>
-  <div class="button-group">
-    <button type="button" name="select10" onclick="goToSelectedQuestion(10)">10</button>
-  </div>
-</div>
-
-{% endblock %} {% block middle_content %}
-<!-- Generate quiz -->
-<div class="container" style="height: 500px; width: 600px">
-  <form id="quiz-form" action="/submit/{{ index }}" method="POST">
-    <!-- Other form elements -->
-    <input type="hidden" id="index" value="{{ index }}" />
-    <input type="hidden" name="username" value="{{username}}" />
-    <input type="hidden" id="total_score" name="total_score" value="0" />
-
+  
+  
+  
+  
+  {% endblock %} {% block middle_content %}
+  <!-- Generate quiz -->
+  <div class="container" style="height: 500px; width: 600px">
+    <form id="quiz-form" action="/submit" method="POST">
+      <!-- Other form elements -->
+      
+      <!-- <input type="hidden" name="test_id" value="{{row_data[index][1]}}"> -->
+      <input type="hidden" name="time_taken" id="time_taken" value="{{ timer_value }}" />
+      <!-- <input type="hidden" id="time_taken" name="time_taken" value="0" /> -->
+      <input type="hidden" id="total_score" name="total_score" value="0" />
+      <input type="hidden" name="test_id" value="{{row_data[index][1]}}">
+      
     {% if row_data %}
     <div id="question-container">
 
-      <h2>Question {{ index + 1 }}:</h2>
-      <p id="q_font">{{ row_data[index][2] }}</p>
+      <h2>Question Number: {{ index + 1 }}:</h2>
+      <p id="q_font">{{ row_data[index][3] }}</p>
       <!-- Display the question -->
 
       <!-- Hidden input field to store the correct answer -->
-      <input type="hidden" name="correct_answer" value="{{ row_data[index][7] }}" />
+      <input type="hidden" name="correct_answer" value="{{ row_data[index][8] }}" />
 
-      <input type="radio" id="option1" name="answer" value="{{ row_data[index][3] }}" />
-      <label for="option1" class="ans_font">{{ row_data[index][3] }}</label><br />
+      <input type="radio" id="option1" name="answer" value="{{ row_data[index][4] }}" />
+      <label for="option1" class="ans_font">{{ row_data[index][4] }}</label><br />
       <!-- Display option 1 -->
 
-      <input type="radio" id="option2" name="answer" value="{{ row_data[index][4] }}" />
-      <label for="option2" class="ans_font">{{ row_data[index][4] }}</label><br />
+      <input type="radio" id="option2" name="answer" value="{{ row_data[index][5] }}" />
+      <label for="option2" class="ans_font">{{ row_data[index][5] }}</label><br />
       <!-- Display option 2 -->
 
-      <input type="radio" id="option3" name="answer" value="{{ row_data[index][5] }}" />
-      <label for="option3" class="ans_font">{{ row_data[index][5] }}</label><br />
+      <input type="radio" id="option3" name="answer" value="{{ row_data[index][6] }}" />
+      <label for="option3" class="ans_font">{{ row_data[index][6] }}</label><br />
       <!-- Display option 3 -->
 
-      <input type="radio" id="option4" name="answer" value="{{ row_data[index][6] }}" />
-      <label for="option4" class="ans_font">{{ row_data[index][6] }}</label><br />
+      <input type="radio" id="option4" name="answer" value="{{ row_data[index][7] }}" />
+      <label for="option4" class="ans_font">{{ row_data[index][7] }}</label><br />
       <!-- Display option 4 -->
 
       <div class="button-group">
@@ -135,25 +146,26 @@ style_content %}
     {% else %}
     <p>No questions available.</p>
     {% endif %}
-    <!-- Hidden input field to pass the updated timer value -->
-    <input type="hidden" name="timer_value_updated" id="timer_value_hidden" value="{{ timer_value }}" />
+   
   </form>
 </div>
 
 <script>
   // Pass the row_data variable to JavaScript
-  var row_data = {{ row_data|tojson|safe }};
 
+  var row_data = JSON.parse( document.getElementById("row_data").innerText );
+
+  // console.log(row_data);
   // Array to store user's selected answers
   var userAnswers = new Array(row_data.length).fill(null);
 
   // Get the initial value of index from the hidden input field
   var index = parseInt(document.getElementById("index").value);
+  // var index = 0;
 
   // Set the timer duration in seconds
-  var timerDuration = parseInt(
-    document.getElementById("timer_value_hidden").value
-  ); // 10 minutes
+  var timerDuration = parseInt(document.getElementById("time_taken").value); // 10 minutes
+  const timerDuration2 = timerDuration;
 
   // Function to update the selected answer for a question
   function updateSelectedAnswer(questionIndex, selectedAnswer) {
@@ -166,7 +178,7 @@ style_content %}
     var totalScore = 0;
     // Iterate through all questions and check user's answers
     for (var i = 0; i < row_data.length; i++) {
-      var correctAnswer = row_data[i][7]; // Correct answer for the current question
+      var correctAnswer = row_data[i][8]; // Correct answer for the current question
       var userAnswer = userAnswers[i]; // User's selected answer for the current question
       if (userAnswer === correctAnswer) { // Check if user answered correctly
         totalScore++;
@@ -184,8 +196,8 @@ style_content %}
         minutes.toString().padStart(2, "0") +
         ":" +
         seconds.toString().padStart(2, "0");
-      document.getElementById("timer_value_hidden").value =
-        timerDuration.toString();
+      // document.getElementById("time_taken").value =
+      //   timerDuration.toString();
       timerDuration--; // Decrease timer duration by 1 second
 
       if (timerDuration < 0) {
@@ -276,32 +288,32 @@ style_content %}
 
   // Function to display the current question
   function displayQuestion() {
-    let selectedAnswer = document.querySelector(`input[name="answer"]:checked`);
-    if (selectedAnswer) {
-      updateSelectedAnswer(index, selectedAnswer.value);
-    }
+    // let selectedAnswer = document.querySelector(`input[name="answer"]:checked`);
+    // if (selectedAnswer) {
+    //   updateSelectedAnswer(index, selectedAnswer.value);
+    // }
     var questionContainer = document.getElementById("question-container");
-    var questionText = row_data[index][2]; // Question text from  row_data
+    var questionText = row_data[index][3]; // Question text from  row_data
     questionContainer.innerHTML = `
-                  <h2>Question ${index + 1}:</h2>
+                  <h2>Question Number: ${ index + 1}:</h2>
                   <p id="q_font">${questionText}</p>
-                  <input type="hidden" name="correct_answer" value="${row_data[index][7]
+                  <input type="hidden" name="correct_answer" value="${row_data[index][8]
       }">
-                  <input type="radio" id="option1" name="answer" value="${row_data[index][3]
+                  <input type="radio" id="option1" name="answer" value="${row_data[index][4]
       }">
-                  <label for="option1" class="ans_font">${row_data[index][3]
+                  <label for="option1" class="ans_font">${row_data[index][4]
       }</label><br>
-                  <input type="radio" id="option2" name="answer" value="${row_data[index][4]
+                  <input type="radio" id="option2" name="answer" value="${row_data[index][5]
       }">
-                  <label for="option2" class="ans_font">${row_data[index][4]
+                  <label for="option2" class="ans_font">${row_data[index][5]
       }</label><br>
-                  <input type="radio" id="option3" name="answer" value="${row_data[index][5]
+                  <input type="radio" id="option3" name="answer" value="${row_data[index][6]
       }">
-                  <label for="option3" class="ans_font">${row_data[index][5]
+                  <label for="option3" class="ans_font">${row_data[index][6]
       }</label><br>
-                  <input type="radio" id="option4" name="answer" value="${row_data[index][6]
+                  <input type="radio" id="option4" name="answer" value="${row_data[index][7]
       }">
-                  <label for="option4" class="ans_font">${row_data[index][6]
+                  <label for="option4" class="ans_font">${row_data[index][7]
       }</label><br>
       
       <div class="button-group">
@@ -327,9 +339,22 @@ style_content %}
   // Function to submit the quiz
   function submitQuiz() {
     // console.log("submitQuiz() function called.");
+    let selectedAnswer = document.querySelector(`input[name="answer"]:checked`);
+    if (selectedAnswer) {
+      markAttemptorNotAttempt(true);
+      updateSelectedAnswer(index, selectedAnswer.value);
+
+    } else {
+      markAttemptorNotAttempt(false);
+    }
+
+    document.getElementById("time_taken").value = (timerDuration2 - timerDuration).toString();
+    // time_taken = document.getElementById("time_taken").value;
+    //final logic to submit quiz
     calculateTotalScore();
     document.getElementById("quiz-form").submit();
   }
+  
 </script>
 
 {% endblock %}
