@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz{% endblock %}
+{% block style_content %}
+<style>
+    .max-width {
+        width: max-content;
+    }
+</style>
+{% endblock %}
+{% block left_content %}
+
+<div class="container"> view data student page, success , {{username}}</div>
+
+
+{% endblock %}
+
+{% block middle_content %}
+<!-- Middle content -->
+
+<div class="container table1 max-width">
+
+    <table>
+        <thead>
+            <tr>
+                <th>Serial No.</th>
+                <th>Username</th>
+                <th>User ID</th>
+                <th>Test ID</th>
+                <th>Score</th>
+                <!-- <th>Total Score</th> -->
+                <th>Test Duration (seconds)</th>
+                <th>Date Taken</th>
+                <th>Time Taken</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in row_data %}
+            <tr>
+                <td>{{ loop.index  }}</td>
+                <td>{{ username }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <!-- <td>{{ row.time_required }}</td> -->
+                <td>{{ row[5] }}</td>
+                <td>{{ row[6] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

@@ -47,7 +47,7 @@
     {% block style_content %} {% endblock %}
   </head>
   <body>
-    <header>
+    <header class="header">
       <div id="forward-backward-buttons">
         <button id="go-back" onclick="goBack()">Go Back </button>
         <button id="go-forward" onclick="goForward()">
@@ -61,7 +61,7 @@
       <div class="middle-section">{% block middle_content %}{% endblock %}</div>
     </section>
 
-    <footer></footer>
+    <footer class="footer"></footer>
     <script>
       function goBack() {
         window.history.back();

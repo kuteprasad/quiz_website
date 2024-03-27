@@ -1,20 +1,51 @@
-html, body {
-    height: 100%; /* Ensure the HTML and body elements take up the full height of the viewport */
-    margin: 0; /* Remove default margins */
-    padding: 0; /* Remove default padding */
-  }
+html,
+body {
+  height: 100vh; /* Ensure the body takes up the full height of the viewport */
+  margin: 0; /* Remove default margins */
+  padding: 0; /* Remove default padding */
+}
 
 body {
-    font-family: Arial, sans-serif;
-    /* background-color: #f4f4f4; */
-    background-image: url(./images/bg_pic_main.jpg);
-    background-size:cover; /* Cover the entire background */
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Prevent background image from repeating */
-   
-    /* Add animation to the background */
-    /* animation: animateBackground 20s linear infinite; */
-    font-size: 16px; /* Set base font size */
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* Define three rows: header, main content, and footer */
+  font-family: Arial, sans-serif;
+  /* background-color: #f4f4f4; */
+  background-image: url(./images/bg_pic_main.jpg);
+  background-size: cover; /* Cover the entire background */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent background image from repeating */
+
+  /* Add animation to the background */
+  /* animation: animateBackground 20s linear infinite; */
+  font-size: 16px; /* Set base font size */
+}
+
+header,
+footer {
+  background-color: lightgray; /* Just for illustration */
+  padding: 10px;
+}
+
+.header, .footer {
+  height: 100px;
+}
+
+#main {
+  display: grid;
+  grid-template-columns: 30% 70%; /* Set left-section and middle-section to 30% and 70% of the width respectively */
+}
+
+.left-section,
+.middle-section {
+  padding: 20px; /* Add some padding to the sections for spacing */
+}
+
+.left-section {
+  background-color: lightblue; /* Just for illustration */
+}
+
+.middle-section {
+  background-color: lightgreen; /* Just for illustration */
 }
 /* 
 @keyframes animateBackground {
@@ -23,17 +54,17 @@ body {
 } */
 
 .container {
-    width: 500px; /* Increase the width of the main box */
-    height: max-content; /* Set a  height for vertical centering */
-    margin: auto; /* Center horizontally */
-    margin-top: calc(40vh - 150px); /* Center vertically */
-    padding: 20px;
-    /* background-color: rebeccapurple; */
-    background-color: cornsilk;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(104, 237, 246, 0.1);
-    /* Add animation to the main box */
-    animation: fadeIn 0.5s ease-in;
+  width: 500px; /* Increase the width of the main box */
+  height: max-content; /* Set a  height for vertical centering */
+  margin: auto; /* Center horizontally */
+  margin-top: calc(40vh - 150px); /* Center vertically */
+  padding: 20px;
+  /* background-color: rebeccapurple; */
+  background-color: cornsilk;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(104, 237, 246, 0.1);
+  /* Add animation to the main box */
+  animation: fadeIn 0.5s ease-in;
 }
 
 input[type="text"],
@@ -41,100 +72,129 @@ input[type="email"],
 input[type="password"],
 input[type="number"],
 button {
-    width: calc(100% - 22px); /* Adjusted width to accommodate padding and border */
-    margin-bottom: 10px;
-    padding: 15px; /* Increased padding */
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    font-size: 1.5em; /* Increased font size relative to the base font size */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Added shadow */
+  width: calc(
+    100% - 22px
+  ); /* Adjusted width to accommodate padding and border */
+  margin-bottom: 10px;
+  padding: 15px; /* Increased padding */
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 1.5em; /* Increased font size relative to the base font size */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Added shadow */
 }
 input[type="radio"] {
-    display: none; /* Hide the default radio button */
+  display: none; /* Hide the default radio button */
 }
 
 input[type="text"]:hover,
 input[type="email"]:hover,
 input[type="password"]:hover,
 button:hover {
-    border-color: #007bff; /* Light blue border color on hover */
+  border-color: #007bff; /* Light blue border color on hover */
 }
 
 label {
-    display: block;
-    margin-bottom: 10px;
-    cursor: pointer;
-    padding-left: 30px; /* Add padding to align text properly */
-    position: relative;
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding-left: 30px; /* Add padding to align text properly */
+  position: relative;
 }
 
 label:before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #ccc;
-    border-radius: 50%; /* Make the radio button round */
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%; /* Make the radio button round */
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 input[type="radio"]:checked + label:before {
-    background-color: #007bff; /* Change the background color when checked */
-    border-color: #007bff; /* Change the border color when checked */
+  background-color: #007bff; /* Change the background color when checked */
+  border-color: #007bff; /* Change the border color when checked */
 }
 
 button {
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s; /* Smooth transition effect */
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition effect */
 
-    /* background-color: #007bff; */
-    /* color: #fff; */
-    /* border: none; */
-    border-radius: 5px;
-    padding: 10px 20px;
-    /* cursor: pointer; */
+  /* background-color: #007bff; */
+  /* color: #fff; */
+  /* border: none; */
+  border-radius: 5px;
+  padding: 10px 20px;
+  /* cursor: pointer; */
 }
 
 button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: darkgrey;
+  color: white; /* Optionally, change text color */
+  cursor: not-allowed; /* Optionally, change cursor to indicate disabled state */
 }
 
 p {
-    text-align: center;
-    font-size: 1.2em; /* Increased font size relative to the base font size */
+  text-align: center;
+  font-size: 1.2em; /* Increased font size relative to the base font size */
 }
 
 a {
-    color: #007bff;
-    text-decoration: none;
+  color: #007bff;
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* Media query for mobile phones */
 @media only screen and (max-width: 600px) {
-    .container {
-        width: 90%; /* Adjust width for smaller screens */
-        max-width: none; /* Remove maximum width restriction */
-        margin-top: 50px; /* Adjust vertical margin for better positioning */
-    }
+  .container {
+    width: 90%; /* Adjust width for smaller screens */
+    max-width: none; /* Remove maximum width restriction */
+    margin-top: 50px; /* Adjust vertical margin for better positioning */
+  }
 }
 
 #q_font {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 24px;
-    font-weight: bold;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 24px;
+  font-weight: bold;
 }
 .ans_font {
-    font-size: 20px;
-    /* font-stretch:extra-expanded; */
-    font-weight: lighter;
-    font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+  /* font-stretch:extra-expanded; */
+  font-weight: lighter;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.table1 {
+  border: 1px solid #ccc;
+  padding: 20px;
+  transform: translateY(-50%);
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  background-color: #f2f2f2;
 }

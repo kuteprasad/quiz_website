@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz{% endblock %}
+{% block style_content %}
+
+{% endblock %}
+{% block left_content %}
+
+
+{% endblock %}
+
+{% block middle_content %}
+<!-- Middle content -->
+
+<div class="container">
+    <h2>Welcome to {{ user }}, Signup Portal ... </h2>
+    <form action="/signup" enctype="multipart/form-data" method="post">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="text" name="first_name" placeholder="First Name" required>
+        <input type="text" name="last_name" placeholder="Last Name" required>
+        <input type="email" name="email" placeholder="xyz@gmail.com" required>
+        <input type="text" name="phone_number" placeholder="+917558750366" required>
+        <input type="password" name="password" placeholder="Enter Password" required>
+        <br>
+
+        <label for="profile_pic">Profile Picture:</label>
+        <input type="file" name="profile_pic" id="profile_pic" accept="image/jpeg,image/png">
+        <br>
+
+
+        <button type="submit">Signup</button>
+    </form>
+
+    <form action="/login/{{ user }}" method="get">
+        <p>Already have an account?</p>
+        <!-- <input type="hidden" name="user" value="{{ user }}"> -->
+        <button type="submit">Log In</button>
+    </form>
+</div>
+
+
+{% endblock %}
