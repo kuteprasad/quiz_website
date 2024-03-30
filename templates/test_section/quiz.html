@@ -1,66 +1,28 @@
 {% extends 'base.html' %} {% block title %}Quiz{% endblock %} {% block
 style_content %}
-<style>
-  #timer {
-    z-index: 5;
-    color: maroon;
-    font-size: 50px;
-  }
 
-  .left-mcq-panel {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    /* color: black; */
-  }
 
-  .button-group {
-    display: flex;
-    justify-content: space-between;
-  }
 
-  .left-mcq-panel button {
-    width: 50px;
-    height: 50px;
-    border: 1px solid white;
-    background-color: white;
-    color: black;
-    margin: 20px;
-    /* Adjust spacing between buttons */
-  }
-
-  .left-mcq-panel button.attempted {
-    background-color: yellowgreen;
-  }
-
-  .left-mcq-panel button.notattempted {
-    background-color: firebrick;
-  }
-
-  .left-mcq-panel button.review {
-    background-color: darkslateblue;
-    
-  }
-
-  .left-mcq-panel button.active {
-    background-color: green !important;
-  }
-</style>
 {% endblock %} {% block left_content %}
-<!-- left block content -->
-<div class="timer" id="timer" > Countdown Will start Soon ... </div>
- <!-- Hidden input field to pass the updated timer value -->
- 
- <input type="hidden" id="index" value="{{ index }}" />
- 
- <div  id="row_data" hidden> {{ row_data|tojson|safe }} </div>
- 
- <div class="left-mcq-panel">
-   
-   <div class="button-group">
-     <button type="button" class="active attempted" name="select1" onclick="goToSelectedQuestion(1)">1</button>
-     <button type="button" name="select2" onclick="goToSelectedQuestion(2)">2</button>
-     <button type="button" name="select3" onclick="goToSelectedQuestion(3)">3</button>
+
+{% endblock %} {% block middle_content %}
+<!-- Generate quiz -->
+<div class="container">
+
+  <!-- left block content -->
+  <div class="timer" id="timer"> Countdown Will start Soon ... </div>
+  <!-- Hidden input field to pass the updated timer value -->
+
+  <input type="hidden" id="index" value="{{ index }}" />
+
+  <div id="row_data" hidden> {{ row_data|tojson|safe }} </div>
+
+  <div class="left-mcq-panel">
+
+    <div class="button-group">
+      <button type="button" class="active attempted" name="select1" onclick="goToSelectedQuestion(1)">1</button>
+      <button type="button" name="select2" onclick="goToSelectedQuestion(2)">2</button>
+      <button type="button" name="select3" onclick="goToSelectedQuestion(3)">3</button>
     </div>
     <div class="button-group">
       <button type="button" name="select4" onclick="goToSelectedQuestion(4)">4</button>
@@ -76,22 +38,18 @@ style_content %}
       <button type="button" name="select10" onclick="goToSelectedQuestion(10)">10</button>
     </div>
   </div>
-  
-  
-  
-  
-  {% endblock %} {% block middle_content %}
-  <!-- Generate quiz -->
-  <div class="container" style="height: 500px; width: 600px">
-    <form id="quiz-form" action="/submit" method="POST">
-      <!-- Other form elements -->
-      
-      <!-- <input type="hidden" name="test_id" value="{{row_data[index][1]}}"> -->
-      <input type="hidden" name="time_taken" id="time_taken" value="{{ timer_value }}" />
-      <!-- <input type="hidden" id="time_taken" name="time_taken" value="0" /> -->
-      <input type="hidden" id="total_score" name="total_score" value="0" />
-      <input type="hidden" name="test_id" value="{{row_data[index][1]}}">
-      
+
+  <div>Auto Reducing ribbon with Timer</div>
+
+  <form id="quiz-form" action="/submit" method="POST">
+    <!-- Other form elements -->
+
+    <!-- <input type="hidden" name="test_id" value="{{row_data[index][1]}}"> -->
+    <input type="hidden" name="time_taken" id="time_taken" value="{{ timer_value }}" />
+    <!-- <input type="hidden" id="time_taken" name="time_taken" value="0" /> -->
+    <input type="hidden" id="total_score" name="total_score" value="0" />
+    <input type="hidden" name="test_id" value="{{row_data[index][1]}}">
+
     {% if row_data %}
     <div id="question-container">
 
@@ -146,14 +104,14 @@ style_content %}
     {% else %}
     <p>No questions available.</p>
     {% endif %}
-   
+
   </form>
 </div>
 
 <script>
   // Pass the row_data variable to JavaScript
 
-  var row_data = JSON.parse( document.getElementById("row_data").innerText );
+  var row_data = JSON.parse(document.getElementById("row_data").innerText);
 
   // console.log(row_data);
   // Array to store user's selected answers
@@ -295,7 +253,7 @@ style_content %}
     var questionContainer = document.getElementById("question-container");
     var questionText = row_data[index][3]; // Question text from  row_data
     questionContainer.innerHTML = `
-                  <h2>Question Number: ${ index + 1}:</h2>
+                  <h2>Question Number: ${index + 1}:</h2>
                   <p id="q_font">${questionText}</p>
                   <input type="hidden" name="correct_answer" value="${row_data[index][8]
       }">
@@ -354,7 +312,7 @@ style_content %}
     calculateTotalScore();
     document.getElementById("quiz-form").submit();
   }
-  
+
 </script>
 
 {% endblock %}

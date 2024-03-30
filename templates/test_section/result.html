@@ -2,19 +2,11 @@
 
 {% block title %}Quiz{% endblock %}
 {% block style_content %}
-<style>
-    .max-width{
-        width: max-content;
-    }
-    </style>
+
+  
 {% endblock %}
 {% block left_content %}
-    <!-- <div class="container" >
 
-        <p > <em> Congratulations, </em> </p>
-        <h1>total score = {{ total_correct }} </h1>
-
-    </div> -->
     
 {% endblock %}
 
@@ -23,8 +15,13 @@
     <!-- Middle content will be replaced with quiz questions -->
 
     <div class="container" >
-
+        {% if total_correct > 5  %}
         <p > <em> Congratulations, </em> </p>
+        {% else %}
+        <p > <em> Do Better Study Next Time, </em> </p>
+        {% endif %}
+
+
         <h1>total score = {{ total_correct }} </h1>
 
         <div class="container table1 max-width">

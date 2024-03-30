@@ -1,33 +1,44 @@
 {% extends 'base.html' %}
 
-{% block title %}Quiz{% endblock %}
+{% block title %}Welcome to Quiz Project{% endblock %}
 {% block style_content %}
 
 {% endblock %}
 {% block left_content %}
 
-    
+
 {% endblock %}
 
 {% block middle_content %}
-    <!-- Middle content will be replaced with quiz questions -->
-    <div class="container">
-        <!-- <form action="/admin-login" method="get">
-          <button type="submit">Admin Login</button>
-        </form>
-        <form action="/student-login" method="get">
-          <button type="submit">Student Login</button>
-        </form> -->
+<!-- Middle content will be replaced with quiz questions -->
+<div class="container">
+  <h2>What Admin Can Do...</h2>
+  <div>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis consequuntur laudantium corrupti expedita
+      sapiente quos maxime, fugit debitis accusantium, qui nam assumenda iusto voluptatem ex praesentium earum corporis
+      nostrum nihil.</p>
+    <img src="" alt="Place some Admin related img here">
+  </div>
+  <h2>What Student Can do... </h2>
+  <div>
+    <img src="" alt="Student related Img">
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde eos, harum nihil asperiores corporis possimus fuga
+      consequatur modi architecto ut. Iure debitis neque omnis tempore ipsa facere sapiente quasi ex?</p>
+  </div>
+  <div>
+    <form action="/login/admin" method="GET">
 
-        <form action="/login/admin" method="GET">
-            <!-- <input type="hidden" name="user" value="admin"> -->
-            <button type="submit">Admin Login</button>
-        </form>
+      <button type="submit">Admin Login</button>
+    </form>
 
-        <form action="/login/student" method="GET">
-            <!-- <input type="hidden" name="user" value="student"> -->
-            <button type="submit">Student Login</button>
-        </form>
+    <form action="/login/student" method="GET">
 
-      </div>
+      <button type="submit">Student Login</button>
+    </form>
+  </div>
+
+
+
+
+</div>
 {% endblock %}

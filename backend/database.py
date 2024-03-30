@@ -18,7 +18,6 @@ def connect_to_db():
     )
     return conn
 
-
 def enable_pgcrypto(conn):
     """
     Attempts to enable the pgcrypto extension in the connected PostgreSQL database.
@@ -378,7 +377,7 @@ def signup_user(form_data, image_path):
     phone_number = form_data["phone_number"]
     password = form_data["password"]
     if image_path == False:
-        image_path = "static/user_images/githublogo.png"
+        image_path = "/user_images/githublogo.png"
 
     # Generate a random salt for password hashing
     salt = generate_random_salt()

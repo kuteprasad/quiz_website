@@ -6,27 +6,36 @@
 {% endblock %}
 {% block left_content %}
 
-<div class="container"> Welcome, {{username}} </div>
-
-    
 {% endblock %}
 
 {% block middle_content %}
-    <!-- Middle content -->
-    <div class="container">
+<!-- Middle content -->
+<div class="container">
+        <p> Welcome, {{username}} </p>
         <form action="/view_profile/{{ username }}">
-            <!-- <input type="hidden" name="user_type" value="admin"> -->
             <button type="submit">View Profile</button>
         </form>
-        
-        <form action="/add_subject">
-            <button type="submit">Add Subject</button>
+
+        <!-- Route to see all Users -->
+        <form action="/users_list"> 
+            <button type="submit">View all Users(add route) </button>
         </form>
         
-        <form action="/view_data_admin">
-            <!-- <input type="hidden" name="username" value="{{username}}"> -->
-            <button type="submit">View Data as Admin</button>
+        
+        <form action="/users_test_data"> 
+            <button type="submit">View Users Test Data</button>
         </form>
+
+        <form action="/view_subject">
+            <button type="submit">View Subject Data</button>
+        </form>
+
+        <!-- Route to add questions -->
+        <form action=""> 
+            <button type="submit">Add Questions (add route) </button>
+        </form>
+
+
     </div>
     
 

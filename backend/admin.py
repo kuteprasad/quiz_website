@@ -13,19 +13,24 @@ def index():
     else:
         return redirect(url_for('login.index'))
 
+@admin_bp.route('/users_list', methods=['GET'])
+def users_list():
+    #logic to return all added users list... 
+    #data to returned sr, pic, username, first, last, mob, email, total test given(count) 
+    return render_template('empty.html', data = "Route not defined in Admin.py (/users_list) ")
     
-@admin_bp.route('/view_data_admin', methods=['GET'])
-def view_data_admin():
+@admin_bp.route('/users_test_data', methods=['GET'])
+def users_test_data():
     username = session['username']
     data = show_users_data('admin', username)
     # print(data)
-    return render_template('admin_side_pages/view_data_admin.html', row_data = data, username = username)
+    return render_template('admin_side_pages/users_test_data.html', row_data = data, username = username)
    
 
-@admin_bp.route('/add_subject', methods=['GET'])
-def add_subject():
+@admin_bp.route('/view_subject', methods=['GET'])
+def view_subject():
     # username = request.args.get('username')
-    return render_template('admin_side_pages/add_subject.html', data = get_test_details(), username = session['username'])
+    return render_template('admin_side_pages/view_subject.html', data = get_test_details(), username = session['username'])
    
 
 @admin_bp.route('/add_questions', methods=['GET'])

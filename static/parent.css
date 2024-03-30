@@ -1,0 +1,228 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
+
+* {
+  margin: 0; /* Remove default margins */
+  padding: 0; /* Remove default padding */
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px; /* Set base font size */
+}
+
+/* setting up font (again defined in body) */
+.archivo-black-regular {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  height: 100vh; /* Ensure the body takes up the full height of the viewport */
+
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+  background-color: #a8a6ff;
+
+  /* Add animation to the background */
+  /* animation: animateBackground 20s linear infinite; */
+
+  /* display: grid;
+  grid-template-columns: 1fr 10fr 1fr; */
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+header,
+footer {
+  width: 80vw;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: baseline;
+  border: 0.1rem solid #090000;
+  padding: 0.7rem;
+  /* margin: 10px; */
+}
+
+header {
+  margin-top: 1rem;
+}
+footer {
+  margin-bottom: 1rem;
+}
+
+#title {
+  width: 70vw;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: baseline;
+  border: 0.1rem solid #090000;
+  padding: 0.7rem;
+}
+
+#main {
+  width: 70vw;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: baseline;
+  border: 0.1rem solid #090000;
+  padding: 0.7rem;
+}
+
+.container {
+  /* Neo-B styles below */
+  /* flex-basis: 80%; */
+  /* height: 500px; */
+  width: 50%;
+  height: max-content;
+  display: inline-flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  /* justify-items: flex-start; */
+  align-items: center;
+  gap: 0.7rem;
+
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 2rem;
+  border-radius: 0.25rem;
+  border: 0.125rem solid #000;
+  background: #fcffda;
+}
+
+.container:hover {
+  background: #fff59f;
+  box-shadow: 0.6rem 0.8rem 0px 0px #000;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+ 
+  /* Increased font size relative to the base font size */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* Added shadow */
+
+  /* neo brutalistic style  */
+
+  font-size: 1.5rem;
+
+  display: flex;
+  width: 15.375rem;
+  height: 2.4375rem;
+  /* padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+  margin: 0.625rem 10rem 0.625rem 0.625rem; */
+  align-items: center;
+  /* gap: 0.625rem; */
+  flex-shrink: 1;
+
+  border-radius: 0.25rem;
+  border: 1px solid #000;
+  background: #fff;
+}
+
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover,
+input[type="number"]:hover {
+
+  border-width: 2px;
+  background: var(--Branding-Pastel-Pink, #ffa6f6);
+
+  /* Shadow/2px Shadow */
+  box-shadow:0.125rem 0.125rem 0px 0px #000;
+}
+
+form {
+  display:flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items:flex-start;
+  border: 0.1rem solid #090000;
+  padding: 0.7rem;
+  width: 100%;
+}
+
+form > * {
+  padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+  margin: 0.625rem 10rem 0.625rem 0.625rem;
+}
+
+/* Extra Small Screens (very small phones) */
+@media only screen and (0px < width <= 575px) {
+  /* Styles for XS screens */
+  header,
+  footer {
+    width: 100vw;
+  }
+  
+  #main,
+  #title {
+    width: 100vw;
+  }
+
+  .container{
+    width: 100%;
+  }
+}
+
+/* Small Screens (most smartphones) */
+@media only screen and (575px < width <= 768px) {
+  /* Styles for S screens */
+
+  header,
+  footer {
+    width: 100vw;
+  }
+  #main,
+  #title {
+    width: 95vw;
+  }
+  .container{
+    width: 90%;
+  }
+
+  input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+  width: 80%;
+}}
+
+/* Medium Screens (larger tablets) */
+@media only screen and (768px < width <= 992px) {
+  /* Styles for M screens */
+
+  header,
+  footer {
+    width: 95vw;
+  }
+  #main,
+  #title {
+    width: 90vw;
+  }
+}
+
+/* Large Screens (desktops and laptops) */
+@media only screen and (992px < width <= 1200px) {
+  /* Styles for L screens */
+  header,
+  footer {
+    width: 80vw;
+  }
+  #main,
+  #title {
+    width: 75vw;
+  }
+}

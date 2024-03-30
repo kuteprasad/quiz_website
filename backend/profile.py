@@ -14,7 +14,7 @@ def index(username):
     # user = session['user']
     # print("usr ty 1 : " + user_type)
     data = view_profile_data(username)
-    print(data)
+    # print(data)
     return render_template('profiles/view_profile.html', data = data, username = username)
     
 @profile_bp.route('/edit_profile', methods=['GET'])

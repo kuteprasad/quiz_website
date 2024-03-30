@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz{% endblock %}
+{% block style_content %}
+
+{% endblock %}
+{% block left_content %}
+
+<div class="container">
+    <h1>Instructions</h1>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, eligendi repellendus modi incidunt voluptate id
+        soluta commodi eius delectus ea veritatis pariatur distinctio dolore ipsum vel illo reiciendis. Provident,
+        voluptates!
+        Aspernatur nobis, repellendus veritatis ex debitis vitae consequatur porro laborum ea aliquam facere beatae
+        ullam. Dolorum a distinctio, officiis quisquam et in eos corrupti modi tempore fugiat, rerum mollitia illo?
+        Ipsum cumque sunt iusto impedit nam eaque, neque id numquam est vero inventore, incidunt architecto beatae, eum
+        qui sint! Fugiat esse impedit distinctio quas excepturi architecto odio! Praesentium, debitis aperiam?</p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, eligendi repellendus modi incidunt voluptate id
+        soluta commodi eius delectus ea veritatis pariatur distinctio dolore ipsum vel illo reiciendis. Provident,
+        voluptates!
+        Aspernatur nobis, repellendus veritatis ex debitis vitae consequatur porro laborum ea aliquam facere beatae
+        ullam. Dolorum a distinctio, officiis quisquam et in eos corrupti modi tempore fugiat, rerum mollitia illo?
+        Ipsum cumque sunt iusto impedit nam eaque, neque id numquam est vero inventore, incidunt architecto beatae, eum
+        qui sint! Fugiat esse impedit distinctio quas excepturi architecto odio! Praesentium, debitis aperiam?</p>
+
+    <form action="/start-quiz" method="post">
+        <input type="hidden" name="data" value="{{data}}">
+        <button type="submit">Start Quiz</button>
+    </form>
+
+</div>
+
+
+{% endblock %}
+
+{% block middle_content %}
+
+
+
+{% endblock %}

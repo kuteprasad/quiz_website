@@ -77,4 +77,13 @@ def signup_submit():
     except Exception as e:
         print("Error occurred:", e)
         return "An error occurred. Please try again later."
-    
+
+@login_bp.route('/forgot_password', methods=['GET', 'POST'])
+def forgot_password():
+    #implement forgot_password logic
+    if request.methods == 'POST':
+        print('Forgot password post method')
+    else:
+        print('Forgot password GET method')
+
+
