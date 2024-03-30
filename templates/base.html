@@ -6,69 +6,38 @@
     <title>{% block title %}{% endblock %}</title>
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
+      href="{{ url_for('static', filename='parent.css') }}"
     />
 
-    <style>
-      #forward-backward-buttons {
-        position: fixed;
-        /* right:10px; */
-        top: 10px;
-        z-index: 1; /* Ensures the buttons are above other content */
-      }
-
-      #forward-backward-buttons button {
-        background-color: rgb(64, 78, 232);
-        color: white;
-        border: none;
-        border-radius: 20px; /* Adjust the border-radius to make the buttons curved */
-        padding: 10px 20px;
-        margin: 0 10px;
-        width: max-content;
-        /* position: absolute; */
-      }
-
-      .forward-backward-buttons button:hover {
-        background-color: rgb(5, 61, 139);
-        cursor: pointer;
-      }
-
-      #go-back {
-        position: fixed;
-        /* right:10px; */
-        left: 10px; /* Adjust as needed */
-      }
-
-      #go-forward {
-        position: fixed;
-        right: 10px; /* Adjust as needed */
-      }
-    </style>
     {% block style_content %} {% endblock %}
   </head>
   <body>
     <header class="header">
-      <div id="forward-backward-buttons">
-        <button id="go-back" onclick="goBack()">Go Back </button>
-        <button id="go-forward" onclick="goForward()">
-          Go Forward 
-        </button>
-      </div>
-    </header>
 
-    <section id="main">
-      <div class="left-section">{% block left_content %}{% endblock %}</div>
-      <div class="middle-section">{% block middle_content %}{% endblock %}</div>
+      <p><a href="{{url_for('start_here.html')}}">Home</a></p>
+      <p>Welcome to my Quiz Website</p>
+      
+      <div class="dp">
+        <img src="" alt="Your Profile Picture">
+      </div>
+      
+
+    </header>
+    
+    <section id="title">
+      {% block left_content %}{% endblock %}
     </section>
 
-    <footer class="footer"></footer>
-    <script>
-      function goBack() {
-        window.history.back();
-      }
-      function goForward() {
-        window.history.forward();
-      }
+    <section id="main">
+      {% block middle_content %}{% endblock %}
+   
+    </section>
+
+    <footer class="footer">
+
+      <p>I'm Footer</p>
+      <p>thanks for visiting our website</p>
+    </footer>
     </script>
   </body>
 </html>

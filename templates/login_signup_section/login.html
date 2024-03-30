@@ -8,28 +8,30 @@
 
 <!-- <div class="container"></div> -->
 
-    
+
 {% endblock %}
 
 {% block middle_content %}
-    <!-- Middle content -->
-    <div class="container" >
-        <h2>Welcome to {{ user }}, login Portal ... </h2>
-        <form action="/login" method="post">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <!-- <input type="hidden" name="user" value="{{ user }}"> -->
-            <button type="submit">Login</button>
-        </form>
+<!-- Middle content -->
+<div class="container">
+    <h2>Welcome to {{ user }}, login Portal ... </h2>
+    <form action="/login" method="post">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
 
-        <form action="/signup" method="get">
-            <p>Don't have a Account? Please do ...</p>
-            <!-- <input type="hidden" name="user" value="{{ user }}"> -->
-            <button type="submit">SignUp</button>
-        </form>
-    </div>
+        <div>
+            <button type="submit">Log in</button>
+            <span>  Forgot password?</span>
+        </div>
+
+    </form>
+    <form action="/signup" method="get">
+        <p>Don't have a Account? Please do ...</p>
+
+        <button type="submit">SignUp</button>
+    </form>
+
+</div>
 
 <!-- <p>this is main.html file </p> -->
 {% endblock %}
-
-

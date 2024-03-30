@@ -2,25 +2,21 @@
 
 {% block title %}Quiz{% endblock %}
 {% block style_content %}
-<style>
-    .max-width {
-        width: max-content;
-    }
-</style>
+
 {% endblock %}
 
 {% block left_content %}
 
-<div class="container">
-    <p>Hello {{username.capitalize()}},</p>
-    <p>You can see all data of students here </p>
-</div>
 
 {% endblock %}
 
 {% block middle_content %}
 
 <div class="container table1 max-width">
+    <div >
+        <p>Hello {{username.capitalize()}},</p>
+        <p>You can see all data of students here </p>
+    </div>
     <table>
         <thead>
             <tr>

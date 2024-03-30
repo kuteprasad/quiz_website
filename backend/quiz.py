@@ -15,12 +15,17 @@ def index():
     else:
         return redirect(url_for('login.index'))
 
+@quiz_bp.route('/start-quiz', methods=['GET'])
+def start_quiz_get():
+    data = request.args
+    return render_template('test_section/instructions.html', data = data)
+
 @quiz_bp.route('/start-quiz', methods=['POST'])
 def start_quiz():
     # global current_data  # Access the global current_data variable
     # global test_id
-    # print("requset. form :: ")
-    # print(request.form)
+    print("requset. form of start-quiz post :: ")
+    print(request.form)
 
     # username = request.form['username']
     test_id = int(request.form['test_id'])

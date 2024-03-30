@@ -6,13 +6,13 @@
 {% endblock %}
 {% block left_content %}
 
-<div class="container"></div>
 
     
 {% endblock %}
 
 {% block middle_content %}
-    <!-- Middle content -->
+    
+<div class="container"></div>
 
 
 {% endblock %}

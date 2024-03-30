@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz{% endblock %}
+{% block style_content %}
+
+
+
+{% endblock %}
+{% block left_content %}
+
+<div class="container">
+    <h2>Test Data Available in Database</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Test Number</th>
+                <th>Test Duration</th>
+                <th>Total Marks</th>
+                <th>Total Questions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[2] }}</td>
+                <td>{{ item[3] }}</td>
+                <td>{{ item[4] }}</td>
+                <td>{{ item[5] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+
+{% endblock %}
+
+{% block middle_content %}
+<!-- Middle content -->
+
+<div class="container">
+ <a href="add_subject.html"> Add subject</a>
+ <a href="update_subject.html"> Update subject</a>
+ <a href="delete_subject.html"> Delete Subject</a>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Empty Page{% endblock %}
+{% block style_content %}
+
+{% endblock %}
+{% block left_content %}
+
+<div>
+    <p>This page is just returned when we haven't made any special page to return for that route</p>
+</div>
+{% endblock %}
+
+{% block middle_content %}
+<!-- Middle content -->
+<div class="container">
+    <p>error or response  === >>> </p>
+    <p>{{ response }} </p>
+</div>
+
+
+{% endblock %}

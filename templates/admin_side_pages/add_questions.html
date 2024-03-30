@@ -1,55 +1,25 @@
 {% extends 'base.html' %}
 
-{% block title %}Quiz{% endblock %}
+{% block title %}Add Questions{% endblock %}
 {% block style_content %}
-<style>
 
-.form-group {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    font-weight: bold;
-}
-
-.form-control {
-    width: 90%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 18px; 
-}
-
-.btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    color: #fff;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-
-</style>
 {% endblock %}
 {% block left_content %}
 
-
-
-    
 {% endblock %}
 
 {% block middle_content %}
     <!-- Middle content -->
     <div class="container">
+        <form action="/add_questions" method="get">
+            <select name="subject" id="subject">
+                <option value="DSA">DSA</option>
+                <option value="Geography">Geography</option>
+            </select>
+            <p>add cascading dropdown.. refer rough.txt</p>
+
+            <select name="test_no" id="test_no"></select>
+        </form>
         <form action="/add_questions" method="POST">
             <div class="form-group">
                 <label for="question_no">Question Number:</label>
@@ -89,7 +59,9 @@ label {
             <!-- <input type="hidden" name="username" value="{{username}}"> -->
             <button type="submit" class="btn btn-primary" name="add_another">Add Another Question</button>
         </form>
-
+        <div>
+            <button type="button">Back</button>
+        </div>
         <form action="/admin" method="GET">
             <!-- <input type="hidden" name="username" value="{{username}}"> -->
             <button type="submit" class="btn btn-primary" name="done">Done, Go to Admin Main Page</button>

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz{% endblock %}
+{% block style_content %}
+
+{% endblock %}
+{% block left_content %}
+
+
+    
+{% endblock %}
+
+{% block middle_content %}
+    
+<div class="container">
+    <form action="/delete_subject" method="get">
+        
+        <p>use cascading dropdown to select subject and Test_no</p>
+
+        <p>pass selected subject and test_no to backend</p>
+
+        <button type="submit">Delete</button>
+
+
+        
+    </form>
+</div>
+
+
+{% endblock %}
