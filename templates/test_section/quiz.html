@@ -1,11 +1,39 @@
-{% extends 'base.html' %} {% block title %}Quiz{% endblock %} {% block
-style_content %}
+{% extends 'base.html' %} 
+{% block title %}Quiz{% endblock %}
+ {% block style_content %}
+ <style>
+  .ribbon {
+    width: 100%;
+    height: 20px;
+    background-color: green;
+    position: relative;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background-color: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: width 0.5s ease;
+  }
+
+  .blue { background-color: blue; }
+  .red { background-color: red; }
+  .blinking {
+    animation: blinker 1s linear infinite;
+  }
+  @keyframes blinker {
+    50% { opacity: 0; }
+  }
+</style>
 
 
+{% endblock %} 
+{% block left_content %}
 
-{% endblock %} {% block left_content %}
-
-{% endblock %} {% block middle_content %}
+{% endblock %}
+ {% block middle_content %}
 <!-- Generate quiz -->
 <div class="container">
 
@@ -39,7 +67,10 @@ style_content %}
     </div>
   </div>
 
-  <div>Auto Reducing ribbon with Timer</div>
+  <div class="ribbon">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
 
   <form id="quiz-form" action="/submit" method="POST">
     <!-- Other form elements -->
@@ -163,11 +194,27 @@ style_content %}
         submitQuiz();
         clearInterval(timerInterval); // Stop the countdown
       }
+
+          // Update the ribbon color based on the timer value
+          updateRibbonColor(timerDuration);
     }
   }
 
   // Update the timer every second
   var timerInterval = setInterval(updateTimer, 1000);
+
+   // Function to update the ribbon color based on the timer value
+   function updateRibbonColor(timerValue) {
+    var ribbon = document.querySelector('.ribbon');
+    if (timerValue > timerDuration2 * 0.5) {
+      ribbon.style.backgroundColor = 'green';
+    } else if (timerValue > timerDuration2 * 0.2) {
+      ribbon.style.backgroundColor = 'blue';
+    } else {
+      ribbon.classList.add('blinking');
+      ribbon.style.backgroundColor = 'red';
+    }
+  }
 
   function markAttemptorNotAttempt(bool) {
     let selectedButton = document.querySelector(`[name="select${index + 1}"]`);
