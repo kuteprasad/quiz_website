@@ -5,35 +5,35 @@
 <style>
    
 
-    .profile-details {
-        /* background-color: #f0f0f0; */
-        padding: 20px;
-        border-radius: 5px;
-        text-align: center;
-    }
+   .profile-details {
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
 
-    .profile-picture {
-        margin-bottom: 20px;
-        overflow: hidden;
-        border-radius: 50%;
-    }
+.profile-picture {
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 80%;
+}
 
-    .profile-picture img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-    .circle {
-        width: 150px;
-        height: 150px;
-    }
+.image-limit {
+    max-width: 150px;
+    max-height: 150px;
+}
+
 </style>
 {% endblock %}
 {% block left_content %}
 
 <!-- <div class="container"></div> -->
-<div class="container"> hello, {{username}}</div>
+<div class="container" > hello, {{username}}</div>
 
 {% endblock %}
 
@@ -43,8 +43,8 @@
     <!-- <div class="container2"> -->
         <div class="profile-details">
             <div class="profile-picture">
-                <!-- <img src="{{url_for('static', filename='/user_images/d.jpg')}}" alt="Profile Image" class="circle"> -->
-                <img src="{{ url_for('static', filename = data[7])  }}" alt="Profile Image" class="circle">
+                
+                <img src="{{ url_for('static', filename = data[7])  }}" alt="Profile Image" class="image-limit">
             </div>
             <h2>Hello {{ data[1] }},</h2>
 

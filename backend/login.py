@@ -14,6 +14,20 @@ def index():
     insert_initial_data()
     return render_template('start_here.html')
 
+# @login_bp.route('/home', methods=['GET'])
+# def home():
+#     if 'username' in session:
+#         user = session['user']
+#         if user == 'admin':
+#             return redirect(url_for('admin.index'))
+#         elif user == 'student':
+#             return redirect(url_for('student.index'))
+#         else:
+#             return redirect(url_for('login.login_get', user))
+#     else:
+#         return redirect(url_for('login.index'))
+
+
 @login_bp.route('/login/<user>', methods=['GET'])
 def login_get(user):
     # user = request.args.get('user')

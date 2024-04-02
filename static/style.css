@@ -54,7 +54,9 @@ footer {
 } */
 
 .container {
-  width: 500px; /* Increase the width of the main box */
+  /* width: 500px;  */
+  /* Increase the width of the main box */
+  width: max-content;
   height: max-content; /* Set a  height for vertical centering */
   margin: auto; /* Center horizontally */
   margin-top: calc(40vh - 150px); /* Center vertically */
